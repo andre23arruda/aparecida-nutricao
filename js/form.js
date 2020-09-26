@@ -6,7 +6,7 @@ botao_adicionar.addEventListener('click', function (e){
     var form = document.querySelector('#form-novo-paciente')
     var paciente = criaPaciente(form)
     var paciente_tr = criaPacienteTr(paciente)
-    document.querySelector('table').appendChild(paciente_tr)
+    if (paciente_tr) document.querySelector('table').appendChild(paciente_tr)
     form.reset()
 })
 
@@ -35,10 +35,13 @@ function criaPacienteTr(paciente){
         paciente_tr.appendChild(info_td)
     }
 
+    // Validação de peso e altura
     var imc = calculaImc(paciente.peso, paciente.altura)
-    paciente_tr.querySelector('.info-imc').innerText = imc
-    paciente_tr = avaliaImc(imc, paciente_tr)
-
-    return paciente_tr
-
+    if (avaliaImc(imc, paciente_tr)) {
+        paciente_tr.querySelector('.info-imc').innerText = imc
+        document.querySelector('.mensagem-erro').textContent = ''
+        return paciente_tr
+    }
+    document.querySelector('.mensagem-erro').textContent = 'Peso e altura inválidos!!'
+    return
 }
