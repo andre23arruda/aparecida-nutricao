@@ -25,4 +25,5 @@ for(var paciente of pacientes) {
     if (isNaN(imc))
         // paciente.style.color = 'red' // alterar estilo no js não é adequado
         paciente.classList.add('paciente-invalido') // adiciona classe no elemento e assim altera estilo
+
 }
