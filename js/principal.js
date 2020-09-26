@@ -27,3 +27,16 @@ for(var paciente of pacientes) {
         paciente.classList.add('paciente-invalido') // adiciona classe no elemento e assim altera estilo
 
 }
+
+/* Escutando eventos */
+titulo.addEventListener('click', mostraMensagem)
+
+function mostraMensagem(){
+    console.log('Ola, fui clicado')
+}
+
+/* Escutando eventos: Função anonima */
+var titulo_form = document.querySelector("#titulo-form")
+titulo_form.addEventListener('click', function (){
+    console.log('Ola, fui clicado. Função anonima')
+})
