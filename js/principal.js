@@ -29,14 +29,8 @@ for(var paciente of pacientes) {
 }
 
 /* Escutando eventos */
-titulo.addEventListener('click', mostraMensagem)
-
-function mostraMensagem(){
-    console.log('Ola, fui clicado')
-}
-
-/* Escutando eventos: Função anonima */
-var titulo_form = document.querySelector("#titulo-form")
-titulo_form.addEventListener('click', function (){
+var botao_adicionar = document.querySelector("#adicionar-paciente")
+botao_adicionar.addEventListener('click', function (e){
+    e.preventDefault()
     console.log('Ola, fui clicado. Função anonima')
 })
