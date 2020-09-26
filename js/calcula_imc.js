@@ -26,4 +26,5 @@ function calculaImc(peso, altura) {
 function avaliaImc(imc, paciente_tr){
     if (isNaN(imc))
         paciente_tr.classList.add('paciente-invalido')
+    return paciente_tr
 }
