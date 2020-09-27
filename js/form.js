@@ -1,4 +1,4 @@
-/* Clica no botão */
+/* Adiciona paciente cadastrado no form */
 var botao_adicionar = document.querySelector("#adicionar-paciente")
 botao_adicionar.addEventListener('click', function (e){
     e.preventDefault()
@@ -11,6 +11,7 @@ botao_adicionar.addEventListener('click', function (e){
         form.reset()
     }
 })
+
 
 /* Cria paciente */
 function criaPaciente(form){
@@ -37,7 +38,6 @@ function criaPacienteTr(paciente){
         paciente_tr.appendChild(info_td)
     }
 
-    // Validação de peso e altura
     var erros = validaPaciente(paciente)
     if (erros[0]){
         exibeErros(erros)
