@@ -5,11 +5,13 @@ campoFiltro.addEventListener('input', function(){
     var pacientes = document.querySelectorAll('.paciente')
     pacientes.forEach(function(paciente){
         var nome = paciente.querySelector('.info-nome').textContent.toUpperCase()
-        console.log(nome)
-        if (nome.includes(valorFiltro.toUpperCase())) {
-            paciente.classList.remove('hide-tr')
-        } else {
-            paciente.classList.add('hide-tr')
-        }
+        var expressao = new RegExp(valorFiltro, 'i')
+        if(expressao.test(nome)) paciente.classList.remove('hide-tr')
+        else paciente.classList.add('hide-tr')
+        // if (nome.includes(valorFiltro.toUpperCase())) {
+        //     paciente.classList.remove('hide-tr')
+        // } else {
+        //     paciente.classList.add('hide-tr')
+        // }
     })
 })
