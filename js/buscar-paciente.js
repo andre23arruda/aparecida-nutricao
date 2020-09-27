@@ -7,9 +7,16 @@ botao_bucar.addEventListener('click', function(){
     var xhr = new XMLHttpRequest()
     xhr.open('GET', 'https://api-pacientes.herokuapp.com/pacientes')
     xhr.addEventListener('load', function(){
-        var resposta = xhr.responseText
-        var pacientes = JSON.parse(resposta)
-        adicionaPacientesBuscados(pacientes)
+        if (xhr.status == 200){
+            var resposta = xhr.responseText
+            var pacientes = JSON.parse(resposta)
+            adicionaPacientesBuscados(pacientes)
+            document.querySelector('.erro-ajax').textContent = ''
+            console.log('Requisição finalizada com sucesso')
+        } else {
+            console.log('Deu ruim na requisição')
+            document.querySelector('.erro-ajax').textContent = 'Erro ao buscar pacientes'
+        }
     })
     xhr.send()
 
