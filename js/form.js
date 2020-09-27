@@ -6,8 +6,10 @@ botao_adicionar.addEventListener('click', function (e){
     var form = document.querySelector('#form-novo-paciente')
     var paciente = criaPaciente(form)
     var paciente_tr = criaPacienteTr(paciente)
-    if (paciente_tr) document.querySelector('table').appendChild(paciente_tr)
-    form.reset()
+    if (paciente_tr) {
+        document.querySelector('table').appendChild(paciente_tr)
+        form.reset()
+    }
 })
 
 /* Cria paciente */
@@ -36,12 +38,44 @@ function criaPacienteTr(paciente){
     }
 
     // Validação de peso e altura
-    var imc = calculaImc(paciente.peso, paciente.altura)
-    if (avaliaImc(imc, paciente_tr)) {
-        paciente_tr.querySelector('.info-imc').innerText = imc
-        document.querySelector('.mensagem-erro').textContent = ''
+    var erros = validaPaciente(paciente)
+    if (erros[0]){
+        exibeErros(erros)
+        return
+    } else {
+        paciente_tr.querySelector('.info-imc').innerText = paciente.imc
+        document.querySelector('.mensagem-erro').innerHTML = ''
         return paciente_tr
     }
-    document.querySelector('.mensagem-erro').textContent = 'Peso e altura inválidos!!'
-    return
+}
+
+
+/* Valida paciente */
+function validaPaciente(paciente) {
+    var erros = []
+    if (paciente.nome.length == 0) erros.push(`Erro na informação de: Nome`)
+
+    // analisa peso e altura
+    var array_expressoes = ['Peso', 'Altura']
+    var imc = calculaImc(paciente.peso, paciente.altura)
+    paciente.imc = imc
+    array_expressoes.forEach(function(expressao) {
+        if (paciente.imc.includes(expressao)) erros.push(`Erro na informação de: ${ expressao }`)
+    })
+    // analisa nome e gordura
+    if (paciente.gordura.length == 0) erros.push(`Erro na informação de: Gordura`)
+    if (isNaN(paciente.imc)) erros.push(`Erro na informação de: IMC`)
+    return erros
+}
+
+
+/* Exibe erros */
+function exibeErros(erros) {
+    var ul_erros = document.querySelector('.mensagem-erro')
+    ul_erros.innerHTML = ''
+    erros.forEach(function(erro) {
+        var li = document.createElement('li')
+        li.textContent = erro
+        ul_erros.appendChild(li)
+    })
 }

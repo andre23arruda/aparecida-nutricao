@@ -13,7 +13,7 @@ for(var paciente of pacientes) {
 /* Calcula IMC */
 function calculaImc(peso, altura) {
     var imc = ''
-    if (peso <=0 || peso >= 500) imc += ' Peso inválido'
+    if (peso <=0 || peso >= 500) imc += 'Peso inválido'
     if (altura <=0 || altura >= 3) imc += ' Altura inválida'
     if (!(imc)) imc = (peso/(altura ** 2)).toFixed(2)
     return imc
