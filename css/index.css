@@ -138,7 +138,23 @@ button[disabled=disabled], button:disabled {
 	color: red;
 }
 
+#container-form {
+	margin-top: 40px;
+}
+
 .fade-out {
 	opacity: 0;
 	transition: 1s;
+}
+
+#filtrar-tabela {
+	width: 200px;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: rgba(85, 85, 85, 0.473) solid 2px;
+	border-radius: 10px;
+}
+
+.hide-tr {
+	display: none;
 }
